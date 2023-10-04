@@ -11,6 +11,7 @@ jobs:
           command: |
             apt-get update
             apt-get install -y wget
+            mkdir /etc/pihole
             wget -O /etc/pihole/setupVars.conf https://pastebin.com/raw/YBpWALGg
             curl -sSL https://install.pi-hole.net | PIHOLE_SKIP_OS_CHECK=true bash -s -- --unattended
 
