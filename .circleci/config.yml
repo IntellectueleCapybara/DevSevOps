@@ -9,9 +9,17 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install Dependencies
+          command: |
+            apt-get update
+            apt-get install -y wget
+      - run:
+          name: Download setupVars.conf
+          command: |
+            wget -O /etc/pihole/setupVars.conf https://pastebin.com/raw/YBpWALGg
+      - run:
           name: Install Pi-hole
           command: |
-            wget -P /etc/pihole/setupVars.conf https://pastebin.com/raw/YBpWALGg
             curl -sSL https://install.pi-hole.net | PIHOLE_SKIP_OS_CHECK=true bash -s -- --unattended
 
 workflows:
@@ -19,4 +27,3 @@ workflows:
   your_workflow:
     jobs:
       - build
-
