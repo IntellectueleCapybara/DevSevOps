@@ -9,12 +9,12 @@ jobs:
       - run:
           name: Install Pi-hole
           command: |
-            apt-get update
-            apt-get install -y curl
-            curl -sSL https://install.pi-hole.net | PIHOLE_SKIP_OS_CHECK=true bash
+            cd "Pi-hole/automated install/"
+            sudo bash basic-install.sh
 
 workflows:
   version: 2
   your_workflow:
     jobs:
       - build
+
