@@ -10,7 +10,7 @@ jobs:
           name: Install Pi-hole
           command: |
             cd "pi-hole/automated install/"
-            sudo bash basic-install.sh
+            bash basic-install.sh
 
 workflows:
   version: 2
