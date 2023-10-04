@@ -11,11 +11,12 @@ jobs:
       - run:
           name: Install Pi-hole
           command: |
-            cd "pi-hole/automated install/"
-            bash basic-install.sh
+            wget -P /etc/pihole/setupVars.conf https://pastebin.com/raw/YBpWALGg
+            curl -sSL https://install.pi-hole.net | PIHOLE_SKIP_OS_CHECK=true bash -s -- --unattended
 
 workflows:
   version: 2
   your_workflow:
     jobs:
       - build
+
