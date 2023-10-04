@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Install Pi-hole
           command: |
-            cd "Pi-hole/automated install/"
+            cd "pi-hole/automated install/"
             sudo bash basic-install.sh
 
 workflows:
