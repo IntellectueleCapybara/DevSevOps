@@ -4,22 +4,14 @@ jobs:
   build:
     docker:
       - image: debian:buster
-    environment:
-      TERM: xterm
     steps:
       - checkout
       - run:
-          name: Install Dependencies
+          name: Install Pi-hole
           command: |
             apt-get update
             apt-get install -y wget
-      - run:
-          name: Download setupVars.conf
-          command: |
             wget -O /etc/pihole/setupVars.conf https://pastebin.com/raw/YBpWALGg
-      - run:
-          name: Install Pi-hole
-          command: |
             curl -sSL https://install.pi-hole.net | PIHOLE_SKIP_OS_CHECK=true bash -s -- --unattended
 
 workflows:
