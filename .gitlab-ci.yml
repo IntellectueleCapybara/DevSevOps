@@ -2,12 +2,30 @@ image: debian:buster
 
 stages:
   - build
+  - test
 
 build_job:
   stage: build
   script:
     - apt-get update
-    - apt-get install -y wget
+    - apt-get install -y wget curl
     - mkdir /etc/pihole
     - wget -O /etc/pihole/setupVars.conf https://pastebin.com/raw/YBpWALGg
     - curl -sSL https://install.pi-hole.net | PIHOLE_SKIP_OS_CHECK=true bash -s -- --unattended
+
+code_quality:
+  image: docker:stable
+  stage: test
+  variables:
+    DOCKER_DRIVER: overlay2
+  allow_failure: true
+  script:
+    - docker run
+      --env SOURCE_CODE="$PWD"
+      --volume "$PWD":/code
+      --volume /var/run/docker.sock:/var/run/docker.sock
+      "registry.gitlab.com/gitlab-org/ci-cd/codequality:latest"
+  artifacts:
+    paths: [gl-code-quality-report.json]
+    reports:
+      codequality: gl-code-quality-report.json
