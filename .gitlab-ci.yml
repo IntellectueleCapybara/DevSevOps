@@ -14,11 +14,12 @@ code_quality:
 build_job:
   stage: build
   script:
-    - apt-get update
-    - apt-get install -y wget curl
-    - 'if [ ! -d "/etc/pihole" ]; then mkdir /etc/pihole; fi'
-    - wget -O /etc/pihole/setupVars.conf https://pastebin.com/raw/YBpWALGg
-    - curl -sSL https://install.pi-hole.net | PIHOLE_SKIP_OS_CHECK=true bash -s -- --unattended
+    - sudo su
+    - sudo apt-get update
+    - sudo apt-get install -y wget curl
+    - 'if [ ! -d "/etc/pihole" ]; then sudo mkdir /etc/pihole; fi'
+    - sudo wget -O /etc/pihole/setupVars.conf https://pastebin.com/raw/YBpWALGg
+    - sudo curl -sSL https://install.pi-hole.net | PIHOLE_SKIP_OS_CHECK=true bash -s -- --unattended
 
 
 
