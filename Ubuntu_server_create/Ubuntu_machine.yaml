@@ -84,5 +84,5 @@
     - name: toevoegen....
       shell: |
         qm set 6969 --virtio0 shared_storage:50,format=qcow2
-        qm set 6969 --ipconfig0 ip=172.16.39.202/16,gw=172.16.0.1
+        qm set 6969 --ipconfig0 ip=172.16.39.123/16,gw=172.16.0.1
         qm set 6969 --sshkey /root/.ssh/id_rsa.pub
