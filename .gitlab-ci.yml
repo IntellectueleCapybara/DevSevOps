@@ -10,8 +10,12 @@ build_job:
   script:
     - apt-get update
     - apt-get install -y wget curl
-    - mkdir /etc/pihole
+    - 'if [ ! -d "/etc/pihole" ]; then mkdir /etc/pihole; fi'
     - wget -O /etc/pihole/setupVars.conf https://pastebin.com/raw/YBpWALGg
     - curl -sSL https://install.pi-hole.net | PIHOLE_SKIP_OS_CHECK=true bash -s -- --unattended
+
+
+
+
 
 
