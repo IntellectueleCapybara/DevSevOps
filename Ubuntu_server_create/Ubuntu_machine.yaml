@@ -57,8 +57,8 @@
       proxmox_kvm:
         api_user: root@pam
         api_password: "{{ api_password }}"
-        api_host: "{{ pm01 }}"
-        node: "{{ node1 }}"
+        api_host: "{{ pm03 }}"
+        node: "{{ node3 }}"
         name: "{{ item.hostname }}"
         clone: "{{ item.template }}"
         newid: "{{ item.vmid }}"
@@ -86,3 +86,9 @@
         qm set 6969 --virtio0 shared_storage:50,format=qcow2
         qm set 6969 --ipconfig0 ip=172.16.39.123/16,gw=172.16.0.1
         qm set 6969 --sshkey /root/.ssh/id_rsa.pub
+
+- name: VM starten op Proxmox 3
+  hosts: pm03
+  tasks:
+    - name: Start VM on pm03
+      shell: "qm status 6969 | grep -q 'status: running' || qm start 6969"
