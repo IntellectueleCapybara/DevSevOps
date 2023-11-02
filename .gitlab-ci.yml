@@ -10,7 +10,6 @@ code_quality:
   tags:
     - cq-sans-dind     # Set this job to only run on our new specialized runner
 
-
 build_job:
   stage: build
   script:
