@@ -53,7 +53,7 @@
     ###
     ### PM01
     ###
-    - name: Create VMs on pm01
+    - name: Create VMs on pm03
       proxmox_kvm:
         api_user: root@pam
         api_password: "{{ api_password }}"
@@ -67,11 +67,11 @@
         net: '{"net0":"virtio,bridge=vmbr0"}'
         onboot: yes
         ostype: l26 # Ubuntu 20.04 LTS
-        ipconfig: '{"ipconfig0":"ip={{ item.ip }}/16,gw=172.16.0.1"}'
+        ipconfig: '{"net0":"ip={{ item.ip }}/16,gw=172.16.0.1"}'
         agent: '1'
         timeout: 300
       loop:
-        - { template: "ubuntu-2004-cloudinit-template1", vmid: 6969, hostname: "DevSecOps", ip: "172.16.39.123" }
+        - { template: "ubuntu-2004-cloudinit-template3", vmid: 6969, hostname: "DevSecOps", ip: "172.16.39.123" }
 
 ###
 ### ips toevoegen aan de VMs
